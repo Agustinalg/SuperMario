@@ -1,0 +1,16 @@
+/.classpath
+/.project
+/Launcher/
+/archivos/
+/audio/
+/colisiones/
+/elementos/
+/enemigos/
+/imagenes/
+/juego/
+/observers/
+/parseo/
+/plataformas/
+/powerUps/
+/states/
+/vista/
