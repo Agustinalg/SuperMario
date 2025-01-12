@@ -82,22 +82,20 @@ public class PantallaInicio extends JPanel{
 		buttonsPanel.setOpaque(false);
 
 		saveButton = new JButton("Guardar");
-		saveButton.setPreferredSize(new Dimension(260, 55));
-		saveButton.setFont(ConfigurarFuente.getFuenteMario(18f));
-		saveButton.setForeground(Color.WHITE);
-		addMouseActions(saveButton);
-		decorarBoton(saveButton);
-		buttonsPanel.add(saveButton);
-
+		inicializarBoton(saveButton);
 		backButton = new JButton("Volver");
-		backButton.setPreferredSize(new Dimension(260, 55));
-		backButton.setFont(ConfigurarFuente.getFuenteMario(18f));
-		backButton.setForeground(Color.white);
-		addMouseActions(backButton);
-		decorarBoton(backButton);
-		buttonsPanel.add(backButton);
+		inicializarBoton(backButton);
 
 		namePanel.add(buttonsPanel);
+	}
+
+	private void inicializarBoton(JButton button) {
+		button.setPreferredSize(new Dimension(260, 55));
+		button.setFont(ConfigurarFuente.getFuenteMario(18f));
+		button.setForeground(Color.WHITE);
+		addMouseActions(button);
+		decorarBoton(button);
+		buttonsPanel.add(button);
 	}
 
 	private void inicializarCampoTexto() {
@@ -207,7 +205,6 @@ public class PantallaInicio extends JPanel{
 		button.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				removeSelectionFromButtons();
 				button.add(selectionLabel, BorderLayout.WEST);
 				revalidate();
 				repaint();
@@ -215,7 +212,6 @@ public class PantallaInicio extends JPanel{
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				//selectionLabel.setVisible(false);
 				button.remove(selectionLabel);
 				revalidate();
 				repaint();
@@ -228,13 +224,6 @@ public class PantallaInicio extends JPanel{
 		botonStart2.setBorderPainted(false); 
 		botonStart2.setFocusPainted(false); 
 		botonStart2.setOpaque(false);
-	}
-
-	private void removeSelectionFromButtons() {
-		startButton.remove(selectionLabel);
-		rankingButton.remove(selectionLabel);
-		saveButton.remove(selectionLabel);
-		backButton.remove(selectionLabel);
 	}
 }
 

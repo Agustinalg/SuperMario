@@ -60,7 +60,7 @@ public class Lakitu extends Enemigo{
 		int ancho = calcularAnchoInterseccion(jugador);
 		
 		boolean colisionDeLado = alto >= ancho;
-		boolean colisionDeArriba = esColisionDeArribaConElemento(jugador);
+		boolean colisionDeArriba = elementoColisionaArriba(jugador);
 		
 		if(!colisionDeLado) {
 		

@@ -14,7 +14,6 @@ public class Tuberia extends Plataforma {
 	protected GameFactory fabrica;
 	protected ControladorPartida controladorPartida;
 
-
 	public Tuberia(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
 	}
@@ -28,12 +27,12 @@ public class Tuberia extends Plataforma {
 	}
 
 	public void visitar(Jugador jugador) { 
-		int alto = calcularAlturaInterseccion(jugador);
-		int ancho = calcularAnchoInterseccion(jugador);
+		int interseccionAlto = calcularAlturaInterseccion(jugador);
+		int interseccionAncho = calcularAnchoInterseccion(jugador);
 
-		boolean colisionDeLado = alto >= ancho;
+		boolean colisionDeLado = interseccionAlto >= interseccionAncho;
 		boolean colisionDeIzquierda = jugador.esColisionDeIzquierdaConPlataforma(this);
-		boolean colisionDeArriba = jugador.esColisionDeArribaConPlataforma(this);
+		boolean colisionDeArriba = this.elementoColisionaArriba(jugador); 
 
 		if(colisionDeLado) {
 			if(colisionDeIzquierda) {
@@ -45,20 +44,18 @@ public class Tuberia extends Plataforma {
 			if(colisionDeArriba) {
 				ubicarArriba(jugador);
 				jugador.ultimoBloqueColision(this);
-			}else {	
 			}
 		}	
 	}	
 
 	@Override
 	public void visitar(Enemigo enemigo) {	
-		int alto = calcularAlturaInterseccion(enemigo);
-		int ancho = calcularAnchoInterseccion(enemigo);
+		int interseccionAlto = calcularAlturaInterseccion(enemigo);
+		int interseccionAncho = calcularAnchoInterseccion(enemigo);
 
-		boolean colisionDeLado = (alto >= ancho);
-		boolean colisionDeIzquierda = enemigo.esColisionDeIzquierdaConElemento(this);
-		boolean colisionDeArriba = enemigo.esColisionDeArribaConElemento(this);
-
+		boolean colisionDeLado = (interseccionAlto >= interseccionAncho);
+		boolean colisionDeIzquierda = enemigo.esColisionDeIzquierdaConPlataforma(this);
+		boolean colisionDeArriba = this.elementoColisionaArriba(enemigo);
 
 		if(colisionDeLado) {
 			if(colisionDeIzquierda) {
@@ -69,13 +66,9 @@ public class Tuberia extends Plataforma {
 				enemigo.moverDerecha();
 			}
 		} else {
-			System.out.println("Esta detectando colision por arriba/abajo");
 			if(colisionDeArriba) {
 				enemigo.setPosY((int) (this.getPosY() + enemigo.getAlto()));
-			}else {
-
 			}
-
 		}
 	}
 

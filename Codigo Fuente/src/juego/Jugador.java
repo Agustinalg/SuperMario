@@ -27,9 +27,6 @@ public class Jugador extends Elemento implements Visitable, ElementoJugador{
 	protected Plataforma ultimoBloque;
 	protected String nombre;
 
-
-	//agregar si esta en un bloque o no, para el salto al caer de plataforma
-
 	public Jugador(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
 		velX = 0;
@@ -168,6 +165,10 @@ public class Jugador extends Elemento implements Visitable, ElementoJugador{
 	public int getVelocidadX() {
 		return this.velX;
 	}
+	
+	public int getVelocidadY() {
+		return this.velY;
+	}
 
 	public String getName() {
 		return nombre;
@@ -234,7 +235,7 @@ public class Jugador extends Elemento implements Visitable, ElementoJugador{
 	}
 
 	public void setImagen(Sprite nuevaImagen) {
-		this.imagen = nuevaImagen; // Cambia el atributo `imagen` al nuevo sprite 
+		this.imagen = nuevaImagen; 
 	}
 
 	public boolean isJumped() {
@@ -285,19 +286,6 @@ public class Jugador extends Elemento implements Visitable, ElementoJugador{
 	public void aceptarVisita(Visitor visitor) {
 		// TODO Auto-generated method stub
 		visitor.visitar(this);
-	}
-	public boolean esColisionDeIzquierdaConPlataforma(Elemento elem) {
-		int extrDerJugador = getPosX() + getAncho();
-		int extrDerElemento = elem.getPosX() + elem.getAncho();
-		int extrIzqElemento = elem.getPosX();
-		
-		return (extrDerJugador >= extrIzqElemento) && (extrDerJugador < extrDerElemento);
-	}
-	public boolean esColisionDeArribaConPlataforma(Elemento elem) {
-		int pisoJugador = getPosY() - getAlto();
-		int pisoElemento = elem.getPosY() - elem.getAlto();
-		
-		return (pisoJugador >= pisoElemento);
 	}
 }
 

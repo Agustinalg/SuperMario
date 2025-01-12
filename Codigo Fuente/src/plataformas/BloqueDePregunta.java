@@ -53,12 +53,12 @@ public class BloqueDePregunta extends Plataforma{
 
 	@Override
 	public void visitar(Jugador jugador) {
-		int alto = calcularAlturaInterseccion(jugador);
-		int ancho = calcularAnchoInterseccion(jugador);
+		int interseccionAlto = calcularAlturaInterseccion(jugador);
+		int interseccionAncho = calcularAnchoInterseccion(jugador);
 		
-		boolean colisionDeLado = alto >= ancho;
+		boolean colisionDeLado = interseccionAlto >= interseccionAncho;
 		boolean colisionDeIzquierda = jugador.esColisionDeIzquierdaConPlataforma(this);
-		boolean colisionDeArriba = jugador.esColisionDeArribaConPlataforma(this);
+		boolean colisionDeArriba = this.elementoColisionaArriba(jugador);
 
 		if(colisionDeLado) {
 			if(colisionDeIzquierda) {
@@ -90,13 +90,12 @@ public class BloqueDePregunta extends Plataforma{
 	}
 
 	public void visitar(Enemigo enemigo) {
-		int alto = calcularAlturaInterseccion(enemigo);
-		int ancho = calcularAnchoInterseccion(enemigo);
+		int interseccionAlto = calcularAlturaInterseccion(enemigo);
+		int interseccionAncho = calcularAnchoInterseccion(enemigo);
 
-		boolean colisionDeLado = (alto >= ancho) && (ancho > 2);
-		boolean colisionDeIzquierda = enemigo.esColisionDeIzquierdaConElemento(this);
-		boolean colisionDeArriba = enemigo.esColisionDeArribaConElemento(this);
-
+		boolean colisionDeLado = (interseccionAlto >= interseccionAncho) && (interseccionAncho > 2);
+		boolean colisionDeIzquierda = enemigo.esColisionDeIzquierdaConPlataforma(this);
+		boolean colisionDeArriba = this.elementoColisionaArriba(enemigo);
 
 		if(colisionDeLado) {
 			if(colisionDeIzquierda) {
@@ -109,9 +108,7 @@ public class BloqueDePregunta extends Plataforma{
 		} else {
 			if(colisionDeArriba) 
 				enemigo.setPosY((int) (this.getPosY() + enemigo.getAlto()));
-
 		}
-
 	}
 
 		

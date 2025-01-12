@@ -42,8 +42,6 @@ public abstract class Enemigo extends Elemento implements Visitor, Visitable{
 	}
 
 	private void actualizarPosicion() {
-		//System.out.println("Cabeza Enemigo: " + this.getPosY());
-		//System.out.println("pies Enemigo : " + (this.getPosY() - this.getAlto()));
 		this.setPosX(this.getPosX() + velX);
 		this.setPosY(this.getPosY() + velY);
 		
@@ -106,18 +104,15 @@ public abstract class Enemigo extends Elemento implements Visitor, Visitable{
 		jugador.setJumped(false);
 		jugador.saltarAlMatar();
 	}
-	public boolean esColisionDeIzquierdaConElemento(Elemento elem) {
-		int extrDerEnemigo = getPosX() + getAncho();
-		int extrDerPlataforma = elem.getPosX() + elem.getAncho();
-		int extrIzqPlataforma = elem.getPosX();
-		
-		return (extrDerEnemigo >= extrIzqPlataforma) && (extrDerEnemigo < extrDerPlataforma);
-	}
-	public boolean esColisionDeArribaConElemento(Elemento elem) {
+	/*
+	public boolean elementoColisionaArriba(Elemento elem) {
 		int pisoEnemigo = getPosY() - getAlto();
-		int techoPlataforma = elem.getPosY();
-		return (pisoEnemigo <= techoPlataforma);
-	}
+		int techoEnemigo = getPosY();
+		int pisoElemento = elem.getPosY() - elem.getAlto();
+		
+		return ((pisoElemento >= pisoEnemigo) && (pisoElemento <= techoEnemigo));
+	} */
+
 
 	@Override
 	public void visitar(Enemigo enemigo) {

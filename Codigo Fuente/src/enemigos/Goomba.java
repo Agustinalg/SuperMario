@@ -11,14 +11,13 @@ public class Goomba extends Enemigo{
 	}
 	
 	public void visitar (Jugador jugador) {
-		int alto = calcularAlturaInterseccion(jugador);
-		int ancho = calcularAnchoInterseccion(jugador);
+		int interseccionAlto = calcularAlturaInterseccion(jugador);
+		int interseccionAncho = calcularAnchoInterseccion(jugador);
 		
-		boolean colisionDeLado = alto >= ancho;
-		boolean colisionDeArriba = esColisionDeArribaConElemento(jugador);
+		boolean colisionDeLado = interseccionAlto >= interseccionAncho;
+		boolean colisionDeArriba = elementoColisionaArriba(jugador);
 		
 		if(!colisionDeLado) {
-		
 			if(colisionDeArriba) {
 				chocar(jugador);
 				enemigoMuere(jugador);	

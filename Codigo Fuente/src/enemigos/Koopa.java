@@ -14,15 +14,13 @@ public class Koopa extends Enemigo{
 	}
 
 	public void visitar (Jugador jugador) {
-		
 		int alto = calcularAlturaInterseccion(jugador);
 		int ancho = calcularAnchoInterseccion(jugador);
 		
 		boolean colisionDeLado = alto >= ancho;
-		boolean colisionDeArriba = esColisionDeArribaConElemento(jugador);
+		boolean colisionDeArriba = elementoColisionaArriba(jugador);
 		
 		if(!colisionDeLado) {
-		
 			if(colisionDeArriba) {
 				chocar(jugador);
 				if (escondido) {
@@ -30,7 +28,6 @@ public class Koopa extends Enemigo{
 				}else {
 					escondido = true;
 				}
-					
 			} else 
 				jugadorRecibeDaño(jugador);
 		}else 
